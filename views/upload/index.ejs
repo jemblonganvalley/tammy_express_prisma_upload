@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container justify_center align_center">
+      <form
+        action="/user_create"
+        method="POST"
+        class="form_upload"
+        enctype="multipart/form-data"
+      >
+        <div class="form_control">
+          <label for="emai">email</label>
+          <input type="email" name="email" id="email" />
+        </div>
+
+        <div class="form_control">
+          <label for="password">password</label>
+          <input type="password" name="password" id="password" />
+        </div>
+
+        <div
+          class="form_control"
+          id="image_preview"
+          style="display: flex; flex-direction: column"
+        ></div>
+
+        <div class="form_control">
+          <label for="avatar" class="button_avatar">avatar</label>
+          <input
+            type="file"
+            name="avatar"
+            id="avatar"
+            hidden
+            onchange="handleView(event)"
+            accept="image/jpg, image/jpeg, image/png"
+          />
+        </div>
+
+        <div class="form_control">
+          <button class="button_submit" type="submit">save</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // const handleSubmit = (event) => {
+      //   event.preventDefault();
+      //   console.log(event.target.avatar.files[0]);
+      // };
+
+      const handleView = (event) => {
+        console.log(event.target.files);
+
+        let imgComponent = document.getElementById("image_preview");
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          imgComponent.innerHTML = `<img src="${e.target.result}" style="width : 100%"; height: 200px; object-fit: cover; />`;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>result</title>
+  </head>
+  <body>
+    <div class="container align_center">
+      <h1>result</h1>
+      <a href="/upload">upload again</a>
+      <table class="table_result">
+        <thead>
+          <th>id</th>
+          <th>email</th>
+          <th>password</th>
+          <th>avatar</th>
+        </thead>
+        <tbody>
+          <% data.forEach(element => { %>
+          <tr>
+            <td><%= element.id %></td>
+            <td><%= element.email %></td>
+            <td><%= element.password %></td>
+            <td>
+              <img
+                src="http://localhost:8080/<%= element.avatar.image_path %>"
+                style="width: 50px"
+              />
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
